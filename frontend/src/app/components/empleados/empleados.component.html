@@ -1,0 +1,25 @@
+<section class="product-card page-card">
+	<h2 class="product-title">Empleados</h2>
+	<p class="text-secondary">Tabla <b>employees</b> para vendedores y encargados de CMPG.</p>
+
+	<div *ngIf="error" class="alert error">{{ error }}</div>
+
+	<div class="table-responsive">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Puesto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let e of employees">
+					<td>{{ e.employee_id }}</td>
+					<td>{{ e.full_name }}</td>
+					<td>{{ e.title }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

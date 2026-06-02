@@ -1,0 +1,23 @@
+<nav class="navbar" *ngIf="auth.isLoggedIn()">
+	<div class="container nav-container">
+		<a class="navbar-brand" routerLink="/productos">CMPG Northwind API</a>
+
+		<div class="nav-links">
+			<a routerLink="/productos">Productos</a>
+			<a routerLink="/categorias">Categorías</a>
+			<a routerLink="/ordenes">Órdenes</a>
+			<a routerLink="/clientes">Clientes</a>
+			<a routerLink="/empleados">Empleados</a>
+			<a routerLink="/usuarios">Usuarios</a>
+			<button class="logout-btn" type="button" (click)="auth.logout()">Cerrar sesión</button>
+		</div>
+	</div>
+</nav>
+
+<main class="container mt-4">
+	<div class="session-info" *ngIf="auth.isLoggedIn()">
+		Usuario: <b>{{ auth.getUser()?.full_name }}</b> | Rol: {{ auth.getUser()?.role }}
+	</div>
+
+	<router-outlet></router-outlet>
+</main>

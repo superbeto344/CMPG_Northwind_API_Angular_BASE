@@ -1,0 +1,29 @@
+<section class="product-card page-card">
+	<h2 class="product-title">Clientes</h2>
+	<p class="text-secondary">Tabla <b>customers</b> de Northwind adaptada a clientes gamer.</p>
+
+	<div *ngIf="error" class="alert error">{{ error }}</div>
+
+	<div class="table-responsive">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Cliente</th>
+					<th>Contacto</th>
+					<th>Ciudad</th>
+					<th>País</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let c of customers">
+					<td>{{ c.customer_id }}</td>
+					<td>{{ c.company_name }}</td>
+					<td>{{ c.contact_name }}</td>
+					<td>{{ c.city }}</td>
+					<td>{{ c.country }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

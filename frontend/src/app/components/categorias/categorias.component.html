@@ -1,0 +1,58 @@
+<section class="product-card page-card">
+	<h2 class="product-title">Categorías</h2>
+	<p class="text-secondary">Basado en el módulo de categorías de CMPG, pero ahora usando endpoints REST.</p>
+
+	<div *ngIf="error" class="alert error">{{ error }}</div>
+	<div *ngIf="success" class="alert success">{{ success }}</div>
+
+	<form>
+		<label>
+			Nombre
+			<input [(ngModel)]="form.category_name" name="category_name" placeholder="Nueva categoría" required>
+		</label>
+
+		<label>
+			Descripción
+			<input [(ngModel)]="form.description" name="description" placeholder="Descripción">
+		</label>
+
+		<div class="form-actions">
+			<button class="btn-buy" type="button" (click)="saveCategory()">
+				{{ editingId ? 'Actualizar categoría' : 'Guardar categoría' }}
+			</button>
+			<button class="btn-secondary" type="button" (click)="resetForm()" *ngIf="editingId">
+				Cancelar
+			</button>
+		</div>
+	</form>
+</section>
+
+<section class="product-card page-card">
+	<div class="table-responsive">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Categoría</th>
+					<th>Descripción</th>
+					<th>Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let c of categories">
+					<td>{{ c.category_id }}</td>
+					<td>{{ c.category_name }}</td>
+					<td>{{ c.description }}</td>
+					<td class="actions">
+						<button class="btn-buy small" (click)="editCategory(c)">Editar</button>
+						<button class="btn-danger small" (click)="deleteCategory(c)">Eliminar</button>
+					</td>
+				</tr>
+
+				<tr *ngIf="categories.length === 0">
+					<td colspan="4">No hay categorías para mostrar.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

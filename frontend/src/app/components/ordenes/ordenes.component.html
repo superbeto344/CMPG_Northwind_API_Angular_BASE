@@ -1,0 +1,86 @@
+<section class="product-card page-card">
+	<h2 class="product-title">Órdenes</h2>
+	<p class="text-secondary">Módulo Northwind para demostrar relación orden + detalle de orden.</p>
+
+	<div *ngIf="error" class="alert error">{{ error }}</div>
+	<div *ngIf="success" class="alert success">{{ success }}</div>
+
+	<form class="form-grid">
+		<label>
+			Cliente
+			<select [(ngModel)]="form.customer_id" name="customer_id">
+				<option *ngFor="let c of customers" [value]="c.customer_id">
+					{{ c.company_name }}
+				</option>
+			</select>
+		</label>
+
+		<label>
+			Empleado
+			<select [(ngModel)]="form.employee_id" name="employee_id">
+				<option *ngFor="let e of employees" [ngValue]="e.employee_id">
+					{{ e.full_name }}
+				</option>
+			</select>
+		</label>
+
+		<label>
+			Producto
+			<select [(ngModel)]="form.product_id" name="product_id">
+				<option *ngFor="let p of products" [ngValue]="p.product_id">
+					{{ p.product_name }}
+				</option>
+			</select>
+		</label>
+
+		<label>
+			Cantidad
+			<input type="number" min="1" [(ngModel)]="form.quantity" name="quantity">
+		</label>
+
+		<label>
+			Ciudad de envío
+			<input [(ngModel)]="form.ship_city" name="ship_city">
+		</label>
+
+		<label>
+			País
+			<input [(ngModel)]="form.ship_country" name="ship_country">
+		</label>
+
+		<div class="form-actions">
+			<button class="btn-buy" type="button" (click)="createOrder()">Crear orden</button>
+		</div>
+	</form>
+</section>
+
+<section class="product-card page-card">
+	<div class="table-responsive">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Cliente</th>
+					<th>Empleado</th>
+					<th>Fecha</th>
+					<th>Ciudad</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let o of orders">
+					<td>{{ o.order_id }}</td>
+					<td>{{ o.customer_name }}</td>
+					<td>{{ o.employee_name }}</td>
+					<td>{{ o.order_date }}</td>
+					<td>{{ o.ship_city }}</td>
+					<td>${{ o.total }}</td>
+				</tr>
+
+				<tr *ngIf="orders.length === 0">
+					<td colspan="6">No hay órdenes para mostrar.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

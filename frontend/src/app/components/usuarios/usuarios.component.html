@@ -1,0 +1,29 @@
+<section class="product-card page-card">
+	<h2 class="product-title">Usuarios del sistema</h2>
+	<p class="text-secondary">Tabla <b>users</b> agregada para demostrar inicio de sesión.</p>
+
+	<div *ngIf="error" class="alert error">{{ error }}</div>
+
+	<div class="table-responsive">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Correo</th>
+					<th>Rol</th>
+					<th>Estatus</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let u of users">
+					<td>{{ u.user_id }}</td>
+					<td>{{ u.full_name }}</td>
+					<td>{{ u.email }}</td>
+					<td>{{ u.role }}</td>
+					<td>{{ u.status }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
